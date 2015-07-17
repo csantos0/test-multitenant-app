@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>		
+	
+		<!-- Session settings -->		
+		<property name="hibernate.current_session_context_class">thread</property>		
+		
+		<!-- Multi Tenancy Settings -->
+		<property name="hibernate.multiTenancy">DATABASE</property>
+	    <property name="hibernate.tenant_identifier_resolver">br.com.synchro.tenant.resolver.SessionIdResolver</property>
+		<property name="hibernate.multi_tenant_connection_provider">br.com.synchro.tenant.conprovider.DatabaseMultiTenantConnectionProvider</property>	
+		                                                           
+		<!-- SQL Echo Settings -->
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+		<property name="use_sql_comments">false</property>
+
+		<!-- Main Domain Mappings - Main -->
+		<mapping class="br.com.synchro.domain.User" />
+		<mapping class="br.com.synchro.domain.Organization" />		
+		<mapping class="br.com.synchro.domain.OrgTenant" />
+		
+		<!-- Application Domain Mappings - Tenants -->		
+		<mapping class="br.com.synchro.domain.ModeloDof"/>		
+			
+	</session-factory>
+</hibernate-configuration>
